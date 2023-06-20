@@ -10,6 +10,7 @@ import { loginService } from '../service/login.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  RoleA: any = ['Admin', 'Client', 'User'];
   repeatPass: string = 'none';
   floatLabelControl = new FormControl('auto' as FloatLabelType);
   displayMsg: string = '';
@@ -24,7 +25,7 @@ export class SignupComponent implements OnInit {
     this._router.navigate(['']);
   }
   SignUpForm = new FormGroup({
-    loginId: new FormControl('',[Validators.required]),
+
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
@@ -36,15 +37,15 @@ export class SignupComponent implements OnInit {
       Validators.minLength(6),
       Validators.maxLength(15),
     ]),
+    Role: new FormControl('', [Validators.required]),
+
     rpwd: new FormControl(''),
   });
 
   getFloatLabelValue(): FloatLabelType {
     return this.floatLabelControl.value || 'auto';
   }
-  get LoginId(): FormControl {
-    return this.SignUpForm.get('loginId') as FormControl;
-  }
+
   get Name(): FormControl {
     return this.SignUpForm.get('name') as FormControl;
   }
@@ -57,6 +58,9 @@ export class SignupComponent implements OnInit {
   get RPWD(): FormControl {
     return this.SignUpForm.get('rpwd') as FormControl;
   }
+  get Role(): FormControl {
+    return this.SignUpForm.get('Role') as FormControl;
+  }
 
 
   SignUpSubmited() {
@@ -67,10 +71,12 @@ export class SignupComponent implements OnInit {
       console.log(this.SignUpForm.value);
       this.loginservice
         .SignUpUser(
-        [this.SignUpForm.value.loginId,
+        [
         this.SignUpForm.value.name,
         this.SignUpForm.value.emailId,
-        this.SignUpForm.value.password]
+        this.SignUpForm.value.password,
+        this.SignUpForm.value.Role
+      ]
         )
         .subscribe((res) => {
           if (res == 'Success') {

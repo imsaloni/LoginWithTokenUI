@@ -52,6 +52,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+import { ClientComponent } from './client/client.component';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     SignupComponent,
     ForgotpasswordComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    ClientComponent
   ],
   imports: [
     HttpClientModule,

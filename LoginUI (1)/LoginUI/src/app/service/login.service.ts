@@ -22,10 +22,11 @@ export class loginService {
     return this.httpClient.post(
       this.baseApiUrl + 'Login/SignUp',
       {
-        LoginId: user[0],
-        Name: user[1],
-        EmailId: user[2],
-        Password: user[3],
+
+        Name: user[0],
+        EmailId: user[1],
+        Password: user[2],
+        Role : user[3]
       },
       {
         responseType: 'text',
@@ -35,6 +36,10 @@ export class loginService {
   login(model: any){
      return this.httpClient.post (this.baseApiUrl + 'Login/LoginAsync',model);
 
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
   }
 //   loginUser(loginInfo:Array<String>){
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { FloatLabelType } from '@angular/material/form-field';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { loginService } from '../service/login.service';
 
 
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit{
   responsedata: any;
   Isloggedin = false;
   isUserValid = false;
-
+  RoleA : any = ['Admin', 'Client', 'User'];
 
   //isUserValid: boolean | undefined;
   hide = true;
@@ -37,7 +38,8 @@ export class LoginComponent implements OnInit{
          //Validators.maxLength(15),
 
 
-        ])
+        ]),
+        Role: new FormControl('', [Validators.required]),
 
   });
 
@@ -84,6 +86,25 @@ export class LoginComponent implements OnInit{
   //   });
 
   //}
+  // loginUser() {
+  //   this.loginservice.login(this.loginForm.value).subscribe({
+  //     next: (response) => {
+  //       console.log(response);
+  //       if (response != null) {
+  //         this.responsedata = response;
+  //         localStorage.setItem('token', this.responsedata.result);
+  //         localStorage.setItem(
+  //           'email',
+  //           JSON.stringify(this.loginForm.value.emailId)
+  //         );
+  //       }
+  //       this.Isloggedin = true;
+  //       // alert('Login successful');
+  //       this._router.navigate(['/home'])
+  //     }
+  //   });
+  // }
+
   loginUser() {
     this.loginservice.login(this.loginForm.value).subscribe({
       next: (response) => {
@@ -92,24 +113,52 @@ export class LoginComponent implements OnInit{
           this.responsedata = response;
           localStorage.setItem('token', this.responsedata.result);
           localStorage.setItem(
-            'email',
-            JSON.stringify(this.loginForm.value.emailId)
+            'EmailId',
+            JSON.stringify(this.loginForm.value.EmailId)
           );
+          localStorage.setItem(
+            'Role',
+            JSON.stringify(this.loginForm.value.Role)
+          );
+          if (this.loginForm.value.Role === 'User') {
+            // this._router.navigate(["app-employees"])window.location.reload();
+            this._router.navigate(['home'])
+           // this._router.navigate(['home']);
+          } else if (this.loginForm.value.Role === 'Client') {
+            this._router.navigate(['client']);
+          } else if (this.loginForm.value.Role === 'Admin') {
+            this._router.navigate(['admin']);
+          }
         }
         this.Isloggedin = true;
-        // alert('Login successful');
-        this._router.navigate(['/home'])
+      },
+      error: err => {
+
+        if (err.status == 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Invalid Details',
+            text: 'Username or Password or Role is incorrect!'
+          }).then((okay) => {
+            if (okay) {
+              this._router.navigate(['']);
+              this.loginForm.reset();
+            }
+          })
+        }
       }
     });
   }
-
-
 
   get EmailId(): FormControl {
     return this.loginForm.get('emailId') as FormControl;
   }
   get Password(): FormControl {
     return this.loginForm.get('password') as FormControl;
+  }
+
+  get Role(): FormControl {
+    return this.loginForm.get('Role') as FormControl;
   }
 }
 

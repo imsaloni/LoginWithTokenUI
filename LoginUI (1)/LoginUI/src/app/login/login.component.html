@@ -27,6 +27,15 @@
                </mat-form-field>
         </div>
 
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a role...</mat-label>
+          <mat-select formControlName="Role">
+            <mat-option [value]="Role" *ngFor="let Role of RoleA">{{Role}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="Role.errors?.['required'] && (Role.touched || Role.dirty)">Please choose a
+            role</mat-error>
+        </mat-form-field>
+
         <div class="example-container">
           <div class="row">
             <div class="col-6 offset-3">
