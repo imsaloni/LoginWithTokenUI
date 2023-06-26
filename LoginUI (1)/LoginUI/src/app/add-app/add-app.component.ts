@@ -1,26 +1,24 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 import { AppService } from '../app.service';
 import { NgModel } from '@angular/forms';
 import { Applications } from '../Model/client';
-import { FormsModule } from '@angular/forms';
-
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-client',
-  templateUrl: './client.component.html',
-  styleUrls: ['./client.component.css']
+  selector: 'app-add-app',
+  templateUrl: './add-app.component.html',
+  styleUrls: ['./add-app.component.css']
 })
-export class ClientComponent implements OnInit{
-  title ='post api';
+
+export class AddAppComponent implements OnInit{
+  
   formValue !: FormGroup
   allApplications:any;
   application : Applications =new Applications;
-
+  isAppCreated : boolean =false;
+  displayMsg : string = '';
 addApp:Applications={
-
+ 
   C_Id:0,
   C_Name: '',
   Application_Name: '',
@@ -31,9 +29,9 @@ addApp:Applications={
   constructor(private http:AppService, private router:Router){ }
 
   ngOnInit(): void {
+    
 
-
-
+    
     // console.log(this.applicationForm);
     //get application method for table
     this.http.getApplications().subscribe(x=>{
@@ -56,12 +54,12 @@ addApp:Applications={
 //       console.log(application);
 //     }
 //    });
-
-
+    
+  
 // }
 
-
-
+  
+   
 //    getAllData(){
 //     this.http.getApplications().subscribe(res=>{
 //       this.allApplications=res;
@@ -79,9 +77,9 @@ addApplicationData(){
        this.formValue.reset();
        this.getAllData();//quick refresh the data
     }
-
+    
   }
-
+  
   )
 }
 getAllData(){
@@ -96,17 +94,7 @@ deleteApplication(id:number){
     this.getAllData();//quick regresh the data
   })
 }
-onEdit(id: number) {
-  this.http.editApplications(id, this.application).subscribe(
-    () => {
-      alert("Successfully edited!");
-      this.getAllData();
-    },
-    error => {
-      console.error("Error editing applications:", error);
-    }
-  );
-}
+
 
 
 

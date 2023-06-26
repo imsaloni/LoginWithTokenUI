@@ -1,0 +1,91 @@
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Application Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <!--Modal Form starta-->
+          <!-- <form [formGroup]="applicationForm" (ngSubmit)="AddApplications()"> -->
+            <form #applicationsForm="ngForm" (ngSubmit)="addApplicationData()">
+
+             
+              <div class="mb-3">
+                <label class="form-label">C_Name</label>
+                <input type="text"   class="form-control" placeholder="Application Name"
+                 name="C_Name" [(ngModel)]="addApp.C_Name">
+
+              </div>
+
+            <!-- <div class="mb-3">
+              <label class="form-label">Application Id</label>
+              <input type="text" formControlName="applicationId" class="form-control" placeholder="Application Id" >
+
+            </div> -->
+
+            <div class="mb-3">
+                <label class="form-label">Application Name</label>
+                <input type="text"   class="form-control" placeholder="Application Name"
+                 name="Application_Name" [(ngModel)]="addApp.Application_Name" >
+
+              </div>
+
+              <!-- <div class="mb-3">
+                <label class="form-label">Blackout Duration</label>
+                <input type="text" formControlName="blackoutDuration"  class="form-control" placeholder="BlackOut Duration" >
+
+              </div> -->
+
+              <div class="mb-3">
+                <label class="form-label">Server Info</label>
+                <input type="text"  class="form-control" placeholder="Server Info"
+                 name="ServerInfo" [(ngModel)]="addApp.ServerInfo">
+
+              </div>
+
+
+              <div class="mb-3">
+                <label class="form-label">Port Info</label>
+                <input type="text"  class="form-control" placeholder="Port Info"
+                 name="PortInfo" [(ngModel)]="addApp.PortInfo">
+
+              </div>
+
+
+              <!-- <div class="mb-3" >
+                <label class="form-label">Storage Info</label>
+                <input type="button"  formControlName="storageInfo" class="form-control" placeholder="Storage" >
+
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Database Info</label>
+                <button type="button" formControlName="databaseInfo"  class="form-control" placeholder="Database" >Add DataBase Info</button>
+
+              </div> -->
+
+            <!-- <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div> -->
+
+            <!-- //Check box
+              <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            <button  type="submit" class="btn btn-primary">ADD</button>
+          </form>
+          <!--Modal Form Ends-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="/client">Close</button>
+
+       
+      </div>
+    </div>
+  </div>
+
+</div>
+

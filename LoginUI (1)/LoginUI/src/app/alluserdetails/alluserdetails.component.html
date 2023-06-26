@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<div class="container my-5">
+    <h1 class="mb-3">Admin</h1>
+    <table class="table" *ngIf="alluser">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let app of alluser">
+                <td>{{ app.loginId}}</td>
+                <td>{{ app.name}}</td>
+                <td>{{ app.emailId}}</td>
+                <td>{{ app.role}}</td>
+
+                <td>
+                  
+                   
+                   <button class="btn btn-danger" type="button" (click)="Delete(app.loginId);">Delete</button>
+                </td>
+                <!-- <td><button type="button"  class="btn btn-danger"
+                    (click)="deleteUser(app.loginId)">Delete</button>
+                </td>   -->
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <br><br><button class="nav-link" routerLink="/admin">Back</button><br><br>

@@ -1,6 +1,7 @@
 import { Injectable, reflectComponentType } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Application } from '../Model/application';
 
 
 //import{GetAllEmployeeResponse} from '../Models/api-models/getallstudentresponse.models'
@@ -12,7 +13,7 @@ export class loginService {
 
   constructor(private httpClient: HttpClient) {}
   currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
-
+  AdminUrl = 'http://localhost:5078/api/Admin/';
   baseApiUrl = 'http://localhost:5078/api/';
 
   //constructor(private httpClient: HttpClient) {}
@@ -41,6 +42,12 @@ export class loginService {
   loggedIn() {
     return !!localStorage.getItem('token');
   }
+
+
+
+
+
+
 //   loginUser(loginInfo:Array<String>){
 
 //     return this.httpClient.post(

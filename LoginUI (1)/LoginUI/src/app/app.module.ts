@@ -48,12 +48,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { SignupComponent } from './signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
+import { D3appComponent } from './d3app/d3app.component';
+import { AddAppComponent } from './add-app/add-app.component';
+import { AlluserdetailsComponent } from './alluserdetails/alluserdetails.component';
+
+
 
 
 @NgModule({
@@ -64,7 +69,13 @@ import { ClientComponent } from './client/client.component';
     ForgotpasswordComponent,
     HomeComponent,
     AdminComponent,
-    ClientComponent
+    ClientComponent,
+    D3appComponent,
+    AddAppComponent,
+    AlluserdetailsComponent
+
+
+
   ],
   imports: [
     HttpClientModule,
@@ -107,7 +118,8 @@ import { ClientComponent } from './client/client.component';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
